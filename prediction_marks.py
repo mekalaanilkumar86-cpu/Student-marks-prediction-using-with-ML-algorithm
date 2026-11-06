@@ -1,3 +1,4 @@
+"""Prediction marks module using machine learning models."""
 from flask import Flask, render_template, request
 import joblib
 import numpy as np
@@ -10,12 +11,14 @@ model = joblib.load("Student_Marks_Prediction_Model.pkl")
 
 @app.route("/")
 def home():
+    """Render home page."""
     return render_template("index.html")
 
 
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
-    if request.method == "GET":
+    """Predict student marks based on input features."""
+    if request.method == "POST":
         return render_template("index.html")
 
     hours = float(request.form["hours"])
